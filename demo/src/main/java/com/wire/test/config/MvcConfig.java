@@ -1,5 +1,6 @@
 package com.wire.test.config;
 
+import com.wire.test.service.ExchangeService;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/view/", ".jsp");
+        registry.jsp("WEB-INF/view/", ".jsp");
     }
 
     @Override
@@ -30,5 +31,12 @@ public class MvcConfig implements WebMvcConfigurer {
         messageSource.setDefaultEncoding("UTF-8");
 
         return messageSource;
+    }
+
+    @Bean
+    public ExchangeService exchangeService() {
+        ExchangeService exchangeService = new ExchangeService();
+
+        return exchangeService;
     }
 }
